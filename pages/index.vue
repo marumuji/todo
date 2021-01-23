@@ -44,21 +44,21 @@
           </td>
           <td>{{ todo.created }}</td>
           <td>
-            <button
-              class="button"
-              vbind:class="{
-              'button--yet': todo.state == '作業前'
-              'button--progress': todo.state == '作業中'
-              'button--done': todo.state == '完了'}"
-              @click="changeState(todo)"
+            <v-btn
+            height=20
+            class=button
+            v-bind:color="todo.state === '作業前' ? 'secondary'
+              : todo.state === '作業中' ? 'primary'
+              : 'success'"
+            @click="changeState(todo)"
             >
               {{ todo.state }}
-            </button>
+            </v-btn>
           </td>
           <td>
-            <button class="button" @click="remove(todo)">
+            <v-btn height=20 color=error class="button" @click="remove(todo)">
               削除
-            </button>
+            </v-btn>
           </td>
         </tr>
       </tbody>
@@ -92,7 +92,7 @@ export default {
       } else {
         return this.todos
       }
-    }
+    },
   },
   methods: {
     insert () {
@@ -114,5 +114,4 @@ export default {
     }
   }
 }
-
 </script>
